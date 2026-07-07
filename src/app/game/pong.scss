@@ -1,0 +1,87 @@
+.pong-page {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+  padding: 24px 16px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.court-card {
+  width: 100%;
+  overflow: hidden;
+}
+
+.court-wrap {
+  position: relative;
+
+  canvas {
+    display: block;
+    width: 100%;
+    height: auto;
+    cursor: none;
+    background: #0d1117;
+  }
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  background: rgba(13, 17, 23, 0.82);
+  color: #fff;
+  text-align: center;
+  padding: 16px;
+
+  h2 {
+    margin: 0;
+    font-size: 2.2rem;
+    letter-spacing: 0.2em;
+  }
+
+  p {
+    margin: 0;
+    opacity: 0.8;
+  }
+}
+
+.controls-card {
+  width: 100%;
+}
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px 24px;
+}
+
+.control-group {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  .label {
+    font-weight: 500;
+  }
+}
+
+.hint {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: auto;
+  opacity: 0.7;
+  font-size: 0.85rem;
+}
+
+@media (max-width: 600px) {
+  .hint {
+    margin-left: 0;
+  }
+}

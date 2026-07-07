@@ -1,0 +1,18 @@
+.app-toolbar {
+  gap: 10px;
+
+  .title {
+    font-weight: 600;
+    letter-spacing: 0.06em;
+  }
+
+  .spacer {
+    flex: 1;
+  }
+
+  .subtitle {
+    font-size: 0.85rem;
+    opacity: 0.75;
+    font-weight: 400;
+  }
+}

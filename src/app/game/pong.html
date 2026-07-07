@@ -1,0 +1,68 @@
+<div class="pong-page">
+  <mat-card class="court-card" appearance="outlined">
+    <div class="court-wrap">
+      <canvas #court (mousemove)="onMouseMove($event)"></canvas>
+
+      @if (state() !== 'running') {
+        <div class="overlay">
+          @if (state() === 'idle') {
+            <h2>MY-PONG</h2>
+            <p>First to {{ winScore }} points wins. Move with mouse, W/S or arrow keys.</p>
+            <button mat-flat-button (click)="start()">
+              <mat-icon>play_arrow</mat-icon>
+              Start game
+            </button>
+          } @else if (state() === 'paused') {
+            <h2>Paused</h2>
+            <button mat-flat-button (click)="togglePause()">
+              <mat-icon>play_arrow</mat-icon>
+              Resume
+            </button>
+          } @else if (state() === 'gameover') {
+            <h2>{{ winner() === 'player' ? 'You win! 🏆' : 'Computer wins' }}</h2>
+            <p>Final score {{ playerScore() }} : {{ aiScore() }}</p>
+            <button mat-flat-button (click)="start()">
+              <mat-icon>replay</mat-icon>
+              Play again
+            </button>
+          }
+        </div>
+      }
+    </div>
+  </mat-card>
+
+  <mat-card class="controls-card" appearance="outlined">
+    <mat-card-content class="controls">
+      <div class="control-group">
+        <span class="label">Difficulty</span>
+        <mat-button-toggle-group
+          [value]="difficulty()"
+          (change)="setDifficulty($event.value)"
+          [disabled]="state() === 'running'"
+        >
+          <mat-button-toggle value="easy">Easy</mat-button-toggle>
+          <mat-button-toggle value="medium">Medium</mat-button-toggle>
+          <mat-button-toggle value="hard">Hard</mat-button-toggle>
+        </mat-button-toggle-group>
+      </div>
+
+      <div class="control-group">
+        @if (state() === 'running' || state() === 'paused') {
+          <button mat-stroked-button (click)="togglePause()">
+            <mat-icon>{{ state() === 'paused' ? 'play_arrow' : 'pause' }}</mat-icon>
+            {{ state() === 'paused' ? 'Resume' : 'Pause' }}
+          </button>
+          <button mat-stroked-button (click)="start()">
+            <mat-icon>replay</mat-icon>
+            Restart
+          </button>
+        }
+      </div>
+
+      <div class="hint">
+        <mat-icon inline>keyboard</mat-icon>
+        <span>Space = start / pause &nbsp;·&nbsp; W / S or ↑ / ↓ or mouse to move</span>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div>
